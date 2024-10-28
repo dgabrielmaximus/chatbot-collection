@@ -47,7 +47,10 @@
           console.log(data);
         }
       );
-      Genesys("command", "MessagingService.sendTyping");
+      Genesys("subscribe", "MessagingService.ready", function () {});
+      Genesys("command", "MessagingService.sendTyping", function ({ data }) {
+        console.log(data);
+      });
     </script>
   </body>
 </html>
