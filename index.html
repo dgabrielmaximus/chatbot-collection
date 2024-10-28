@@ -37,7 +37,10 @@
         "subscribe",
         "MessagingService.sendingMessage",
         function ({ data }) {
-          Genesys("command", "MessagingService.sendTyping");
+          // console.log(data);
+          fetch("https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867")
+            .then((response) => response.json())
+            .then((json) => console.log(json));
         }
       );
       Genesys(
@@ -47,11 +50,25 @@
           console.log(data);
         }
       );
+      // Genesys("subscribe", "Messenger.ready", function () {
+      //   Genesys(
+      //     "command",
+      //     "Messenger.open",
+      //     {},
+      //     () => {
+      //       /*fulfilled callback*/
+      //       console.log("Messenger opened");
+      //     },
+      //     (error) => {
+      //       /*rejected callback*/
+      //       console.log("Couldn't open messenger.", error);
+      //     }
+      //   );
+      // });
       // Genesys("subscribe", "MessagingService.ready", function () {
       //   Genesys("command", "MessagingService.sendTyping");
       // });
-      Genesys("subscribe", "MessagingService.ready", (data) => {
-        console.log("Messaging service ready", data);
+      Genesys("subscribe", "MessagingService.ready", () => {
         // Genesys(
         //   "command",
         //   "MessagingService.sendMessage",
