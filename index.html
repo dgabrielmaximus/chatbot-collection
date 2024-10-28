@@ -47,10 +47,32 @@
           console.log(data);
         }
       );
-      Genesys("subscribe", "MessagingService.ready", function () {});
-      Genesys("command", "MessagingService.sendTyping", function ({ data }) {
-        console.log(data);
+      Genesys("subscribe", "Messenger.ready", function () {
+        Genesys(
+          "command",
+          "Messenger.open",
+          {},
+          () => {
+            /*fulfilled callback*/
+            console.log("Messenger opened");
+          },
+          (error) => {
+            /*rejected callback*/
+            console.log("Couldn't open messenger.", error);
+          }
+        );
       });
+      Genesys("subscribe", "MessagingService.ready", function () {});
+      Genesys("command", "MessagingService.sendTyping", {},
+          () => {
+            /*fulfilled callback*/
+            console.log("Messenger opened");
+          },
+          (error) => {
+            /*rejected callback*/
+            console.log("Couldn't open messenger.", error);
+          }
+        );
     </script>
   </body>
 </html>
