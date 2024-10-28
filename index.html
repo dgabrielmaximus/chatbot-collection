@@ -72,13 +72,13 @@
           { message: "Genesys" },
           (data) => {
             /*fulfilled callback*/
-            data ? console.log(data) : null;
-            console.log("Message sent");
+            // data ? console.log(data) : null;
+            console.log("Message sent", data);
           },
           (error) => {
             /*rejected callback*/
-            error ? console.log(error) : null;
-            console.log("Error sending message");
+            // error ? console.log(error) : null;
+            console.log("Error sending message", error);
           }
         );
       });
