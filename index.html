@@ -63,9 +63,10 @@
       //   );
       // });
       Genesys("subscribe", "MessagingService.ready", function () {
-        Genesys("command", "MessagingService.sendTyping", function (o) {
-          console.log("typing", o);
-        });
+        Genesys("command", "MessagingService.sendTyping");
+      });
+      Genesys("subscribe", "MessagingService.error", function ({ data }) {
+        console.log(data);
       });
     </script>
   </body>
