@@ -40,6 +40,14 @@
           console.log(data);
         }
       );
+      Genesys(
+        "subscribe",
+        "MessagingService.messagesReceived",
+        function ({ data }) {
+          console.log(data);
+        }
+      );
+      Genesys("command", "MessagingService.sendTyping");
     </script>
   </body>
 </html>
