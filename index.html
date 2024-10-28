@@ -18,5 +18,10 @@
         deploymentId: '0c1537cd-8f3b-4082-af6e-fcb103bcd71f'
       });
     </script>
+    <script type="text/javascript" charset="utf-8">
+      Genesys("subscribe", "Launcher.ready" , function(o){
+        console.log("The queue works!");
+      });
+    </script>
 </body>
 </html>
