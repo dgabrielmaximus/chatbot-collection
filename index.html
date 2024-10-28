@@ -37,7 +37,7 @@
         "subscribe",
         "MessagingService.sendingMessage",
         function ({ data }) {
-          console.log(data);
+          Genesys("command", "MessagingService.sendTyping");
         }
       );
       Genesys(
@@ -66,21 +66,21 @@
       //   Genesys("command", "MessagingService.sendTyping");
       // });
       Genesys("subscribe", "MessagingService.ready", () => {
-        Genesys(
-          "command",
-          "MessagingService.sendMessage",
-          { message: "Genesys" },
-          (data) => {
-            /*fulfilled callback*/
-            // data ? console.log(data) : null;
-            console.log("Message sent", data);
-          },
-          (error) => {
-            /*rejected callback*/
-            // error ? console.log(error) : null;
-            console.log("Error sending message", error);
-          }
-        );
+        // Genesys(
+        //   "command",
+        //   "MessagingService.sendMessage",
+        //   { message: "Genesys" },
+        //   (data) => {
+        //     /*fulfilled callback*/
+        //     // data ? console.log(data) : null;
+        //     console.log("Message sent", data);
+        //   },
+        //   (error) => {
+        //     /*rejected callback*/
+        //     // error ? console.log(error) : null;
+        //     console.log("Error sending message", error);
+        //   }
+        // );
       });
       Genesys("subscribe", "MessagingService.error", function ({ data }) {
         console.log(data);
