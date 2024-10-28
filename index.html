@@ -41,9 +41,7 @@
           fetch(
             "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
             { mode: "no-cors" }
-          )
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+          ).then((text) => console.log(text));
         }
       );
       Genesys(
