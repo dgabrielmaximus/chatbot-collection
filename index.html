@@ -62,8 +62,25 @@
       //     }
       //   );
       // });
-      Genesys("subscribe", "MessagingService.ready", function () {
-        Genesys("command", "MessagingService.sendTyping");
+      // Genesys("subscribe", "MessagingService.ready", function () {
+      //   Genesys("command", "MessagingService.sendTyping");
+      // });
+      Genesys("subscribe", "MessagingService.ready", () => {
+        Genesys(
+          "command",
+          "MessagingService.sendMessage",
+          { message: "Genesys" },
+          (data) => {
+            /*fulfilled callback*/
+            data ? console.log(data) : null;
+            console.log("Message sent");
+          },
+          (error) => {
+            /*rejected callback*/
+            error ? console.log(error) : null;
+            console.log("Error sending message");
+          }
+        );
       });
       Genesys("subscribe", "MessagingService.error", function ({ data }) {
         console.log(data);
