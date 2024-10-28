@@ -63,12 +63,8 @@
       //   );
       // });
       Genesys("subscribe", "MessagingService.ready", function () {
-        Genesys("command", "MessagingService.sendTyping", {
-          isTyping: true,
-        }, () => {
-          console.log("Typing started");
-        }, (error) => {
-          console.log("Couldn't start typing.", error);
+        Genesys("command", "MessagingService.sendTyping", function (o) {
+          console.log("typing", o);
         });
       });
     </script>
