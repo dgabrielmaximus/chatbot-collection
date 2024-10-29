@@ -69,6 +69,20 @@
                 /* rejected */
               }
             );
+            
+          Genesys(
+              "command",
+              "Database.update",
+              { messaging: { customAttributes: { status: "Processing" } } },
+              function (data) {
+                /* fulfilled, returns data */
+                console.log(data);
+              },
+              function (error) {
+                console.log(error);
+                /* rejected */
+              }
+            );
           });
 
           // fetch(
