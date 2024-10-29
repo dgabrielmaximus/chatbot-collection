@@ -69,8 +69,8 @@
                 /* rejected */
               }
             );
-            
-          Genesys(
+
+            Genesys(
               "command",
               "Database.update",
               { messaging: { customAttributes: { status: "Processing" } } },
@@ -84,16 +84,16 @@
               }
             );
           });
-
+          Genesys("subscribe", "Database.updated", function (e) {
+            console.log(e.data); // Updated database object
+          });
           // fetch(
           //   "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
           //   { mode: "no-cors" }
           // ).then((text) => console.log(text));
         }
       );
-      Genesys("subscribe", "Database.updated", function (e) {
-        console.log(e.data); // Updated database object
-      });
+
       Genesys("subscribe", "MessagingService.error", function ({ data }) {
         console.log(data);
       });
