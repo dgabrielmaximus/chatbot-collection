@@ -38,7 +38,7 @@
         Genesys(
           "command",
           "Database.set",
-          { messaging: { customAttributes: { test: "value" } } },
+          { messaging: { customAttributes: { query: "Hello" } } },
           function (data) {
             /* fulfilled, returns data */
             console.log(data);
@@ -59,7 +59,7 @@
             Genesys(
               "command",
               "Database.update",
-              { messaging: { customAttributes: { test: data.message.text } } },
+              { messaging: { customAttributes: { query: data.message.text } } },
               function (data) {
                 /* fulfilled, returns data */
                 console.log(data);
@@ -77,6 +77,9 @@
           // ).then((text) => console.log(text));
         }
       );
+      Genesys("subscribe", "Database.updated", function (e) {
+        console.log(e.data); // Updated database object
+      });
       Genesys("subscribe", "MessagingService.error", function ({ data }) {
         console.log(data);
       });
