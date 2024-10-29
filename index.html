@@ -69,27 +69,48 @@
                 /* rejected */
               }
             );
-
-            Genesys(
-              "command",
-              "Database.update",
-              {
-                messaging: {
-                  customAttributes: {
-                    query: data.message.text,
-                    status: "Processing",
+            setTimeout(() => {
+              Genesys(
+                "command",
+                "Database.update",
+                {
+                  messaging: {
+                    customAttributes: {
+                      query: data.message.text,
+                      status: "Processing",
+                    },
                   },
                 },
-              },
-              function (data) {
-                /* fulfilled, returns data */
-                console.log(data);
-              },
-              function (error) {
-                console.log(error);
-                /* rejected */
-              }
-            );
+                function (data) {
+                  /* fulfilled, returns data */
+                  console.log(data);
+                },
+                function (error) {
+                  console.log(error);
+                  /* rejected */
+                }
+              );
+            }, 1000);
+            // Genesys(
+            //   "command",
+            //   "Database.update",
+            //   {
+            //     messaging: {
+            //       customAttributes: {
+            //         query: data.message.text,
+            //         status: "Processing",
+            //       },
+            //     },
+            //   },
+            //   function (data) {
+            //     /* fulfilled, returns data */
+            //     console.log(data);
+            //   },
+            //   function (error) {
+            //     console.log(error);
+            //     /* rejected */
+            //   }
+            // );
           });
           // fetch(
           //   "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
