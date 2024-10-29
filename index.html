@@ -73,7 +73,14 @@
             Genesys(
               "command",
               "Database.update",
-              { messaging: { customAttributes: { status: "Processing" } } },
+              {
+                messaging: {
+                  customAttributes: {
+                    query: data.message.text,
+                    status: "Processing",
+                  },
+                },
+              },
               function (data) {
                 /* fulfilled, returns data */
                 console.log(data);
