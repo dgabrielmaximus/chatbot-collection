@@ -38,7 +38,7 @@
         Genesys(
           "command",
           "Database.set",
-          { messaging: { customAttributes: { "test": "value" } } },
+          { messaging: { customAttributes: { test: "value" } } },
           function (data) {
             /* fulfilled, returns data */
             console.log(data);
@@ -53,7 +53,23 @@
         "subscribe",
         "MessagingService.sendingMessage",
         function ({ data }) {
-          console.log(data);
+          console.log(data.message.text);
+          Genesys("subscribe", "Database.ready", function () {
+            console.log("Database plugin is ready.");
+            Genesys(
+              "command",
+              "Database.update",
+              { messaging: { customAttributes: { test: data.message.text } } },
+              function (data) {
+                /* fulfilled, returns data */
+                console.log(data);
+              },
+              function (error) {
+                console.log(error);
+                /* rejected */
+              }
+            );
+          });
 
           // fetch(
           //   "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
