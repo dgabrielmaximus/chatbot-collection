@@ -33,59 +33,34 @@
       Genesys("subscribe", "Launcher.ready", function (o) {
         console.log("It works!");
       });
+      Genesys("subscribe", "Database.ready", function () {
+        console.log("Database plugin is ready.");
+        Genesys(
+          "command",
+          "Database.set",
+          { messaging: { customAttributes: { "test": "value" } } },
+          function (data) {
+            /* fulfilled, returns data */
+            console.log(data);
+          },
+          function (error) {
+            console.log(error);
+            /* rejected */
+          }
+        );
+      });
       Genesys(
         "subscribe",
         "MessagingService.sendingMessage",
         function ({ data }) {
           console.log(data);
-          fetch(
-            "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
-            { mode: "no-cors" }
-          ).then((text) => console.log(text));
+
+          // fetch(
+          //   "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
+          //   { mode: "no-cors" }
+          // ).then((text) => console.log(text));
         }
       );
-      Genesys(
-        "subscribe",
-        "MessagingService.messagesReceived",
-        function ({ data }) {
-          console.log(data);
-        }
-      );
-      // Genesys("subscribe", "Messenger.ready", function () {
-      //   Genesys(
-      //     "command",
-      //     "Messenger.open",
-      //     {},
-      //     () => {
-      //       /*fulfilled callback*/
-      //       console.log("Messenger opened");
-      //     },
-      //     (error) => {
-      //       /*rejected callback*/
-      //       console.log("Couldn't open messenger.", error);
-      //     }
-      //   );
-      // });
-      // Genesys("subscribe", "MessagingService.ready", function () {
-      //   Genesys("command", "MessagingService.sendTyping");
-      // });
-      Genesys("subscribe", "MessagingService.ready", () => {
-        // Genesys(
-        //   "command",
-        //   "MessagingService.sendMessage",
-        //   { message: "Genesys" },
-        //   (data) => {
-        //     /*fulfilled callback*/
-        //     // data ? console.log(data) : null;
-        //     console.log("Message sent", data);
-        //   },
-        //   (error) => {
-        //     /*rejected callback*/
-        //     // error ? console.log(error) : null;
-        //     console.log("Error sending message", error);
-        //   }
-        // );
-      });
       Genesys("subscribe", "MessagingService.error", function ({ data }) {
         console.log(data);
       });
