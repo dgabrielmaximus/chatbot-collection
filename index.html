@@ -6,121 +6,16 @@
     <h1>Shelf Chatbot</h1>
     <script type="text/javascript" charset="utf-8">
       (function (g, e, n, es, ys) {
-        g["_genesysJs"] = e;
-        g[e] =
-          g[e] ||
-          function () {
-            (g[e].q = g[e].q || []).push(arguments);
-          };
+        g['_genesysJs'] = e;
+        g[e] = g[e] || function () {
+          (g[e].q = g[e].q || []).push(arguments)
+        };
         g[e].t = 1 * new Date();
         g[e].c = es;
-        ys = document.createElement("script");
-        ys.async = 1;
-        ys.src = n;
-        ys.charset = "utf-8";
-        document.head.appendChild(ys);
-      })(
-        window,
-        "Genesys",
-        "https://apps.cac1.pure.cloud/genesys-bootstrap/genesys.min.js",
-        {
-          environment: "prod-cac1",
-          deploymentId: "0c1537cd-8f3b-4082-af6e-fcb103bcd71f",
-        }
-      );
-    </script>
-    <script type="text/javascript" charset="utf-8">
-      Genesys("subscribe", "Launcher.ready", function (o) {
-        console.log("It works!");
-      });
-      Genesys("subscribe", "Database.ready", function () {
-        console.log("Database plugin is ready.");
-        Genesys(
-          "command",
-          "Database.set",
-          { messaging: { customAttributes: { query: "Hello" } } },
-          function (data) {
-            /* fulfilled, returns data */
-            console.log(data);
-          },
-          function (error) {
-            console.log(error);
-            /* rejected */
-          }
-        );
-      });
-      Genesys(
-        "subscribe",
-        "MessagingService.sendingMessage",
-        function ({ data }) {
-          console.log(data.message.text);
-          Genesys("subscribe", "Database.ready", function () {
-            console.log("Database plugin is ready.");
-            Genesys(
-              "command",
-              "Database.update",
-              { messaging: { customAttributes: { query: data.message.text } } },
-              function (data) {
-                /* fulfilled, returns data */
-                console.log(data);
-              },
-              function (error) {
-                console.log(error);
-                /* rejected */
-              }
-            );
-            setTimeout(() => {
-              Genesys(
-                "command",
-                "Database.update",
-                {
-                  messaging: {
-                    customAttributes: {
-                      query: data.message.text,
-                      status: "Processing",
-                    },
-                  },
-                },
-                function (data) {
-                  /* fulfilled, returns data */
-                  console.log(data);
-                },
-                function (error) {
-                  console.log(error);
-                  /* rejected */
-                }
-              );
-            }, 1000);
-            // Genesys(
-            //   "command",
-            //   "Database.update",
-            //   {
-            //     messaging: {
-            //       customAttributes: {
-            //         query: data.message.text,
-            //         status: "Processing",
-            //       },
-            //     },
-            //   },
-            //   function (data) {
-            //     /* fulfilled, returns data */
-            //     console.log(data);
-            //   },
-            //   function (error) {
-            //     console.log(error);
-            //     /* rejected */
-            //   }
-            // );
-          });
-          // fetch(
-          //   "https://fznarc8l91.execute-api.us-east-1.amazonaws.com/params?question=what%20is%20BCEID?&sessionId=9c72cbce-37ad-4106-8633-bae4980c4867",
-          //   { mode: "no-cors" }
-          // ).then((text) => console.log(text));
-        }
-      );
-
-      Genesys("subscribe", "MessagingService.error", function ({ data }) {
-        console.log(data);
+        ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+      })(window, 'Genesys', 'https://apps.cac1.pure.cloud/genesys-bootstrap/genesys.min.js', {
+        environment: 'prod-cac1',
+        deploymentId: '4102d6c3-86c0-43cf-8ce0-49e087fd03f3'
       });
     </script>
   </body>
